@@ -6,7 +6,7 @@ Pull stock information from Yahoo Finance for analysis and learning. This projec
 
 Using the Yahoo Finance API, I pulled the information from the Yahoo recommendation charts for all stocks in the S&P500.
 
-[Yahoo Recommendations](./images/yahoo_recommendations.png)
+![Yahoo Recommendations](./images/yahoo_recommendations.png)
 
 ## Author
 Jonathan Nocek - *jnocek@iwu.edu*
