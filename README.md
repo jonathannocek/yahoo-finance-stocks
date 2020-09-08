@@ -1,6 +1,6 @@
 # Yahoo Finance Stocks
 
-This project pulls stock data from Yahoo Finance into a Python notebook for analysis and learing. It also compiles all S&P500 stocks into a notebook for analysis and sends a daily email with information about particular stocks to me.
+This project pulls S&P 500 stock data from Yahoo Finance into a Python notebook for analysis and learing. It also sends an email to me daily containing information about specific stocks.
 
 This project was modified from [here](https://towardsdatascience.com/parse-thousands-of-stock-recommendations-in-minutes-with-python-6e3e562f156d)
 
