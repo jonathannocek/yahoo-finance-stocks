@@ -8,10 +8,13 @@ import private
 import logging
 from yahoo_fin import stock_info as si
 from pandas_datareader import DataReader
-from email.mime.text import MIMEText
 
 
 def weekly_update():
+    """
+    Pulls stock data from Yahoo Finance into Dataframe
+    and sends email via Amazon SES
+    """
     # -----------------------------------
     # Constants
     # -----------------------------------
@@ -174,12 +177,11 @@ def weekly_update():
 
     # Save files to csv
     now = datetime.datetime.now()
-    email_content = f"Stock data for {now.month}/{now.day}/{now.year}"
+    subject = f"Daily stock data {now.month}/{now.day}/{now.year}"
     html_content = df_my_tickers.to_html()
 
     try:
         logger.info("Sending email")
-        # TODO: Need to verify domain with AWS
         response = client.send_email(
             Source=private.FROM_EMAIL,
             Destination={
@@ -187,14 +189,10 @@ def weekly_update():
             },
             Message={
                 'Subject': {
-                    'Data': private.EMAIL_SUBJECT,
+                    'Data': subject
                     'Charset': 'UTF-8'
                 },
                 'Body': {
-                    'Text': {
-                        'Data': email_content,
-                        'Charset': 'UTF-8'
-                    },
                     'Html': {
                         'Data': html_content,
                         'Charset': 'UTF-8'

@@ -1,12 +1,18 @@
 # Yahoo Finance Stocks
 
-Pull stock information from Yahoo Finance for analysis and learning. This project was modified from [here](https://towardsdatascience.com/parse-thousands-of-stock-recommendations-in-minutes-with-python-6e3e562f156d)
+This project pulls stock data from Yahoo Finance into a Python notebook for analysis and learing. It also compiles all S&P500 stocks into a notebook for analysis and sends a daily email with information about particular stocks to me.
 
-## Example
+This project was modified from [here](https://towardsdatascience.com/parse-thousands-of-stock-recommendations-in-minutes-with-python-6e3e562f156d)
 
-Using the Yahoo Finance API, I pulled the information from the Yahoo recommendation charts for all stocks in the S&P500.
+## Tech Stack
 
-![Yahoo Recommendations](./images/yahoo_recommendations.png)
+- Python with Pandas
+- Amazon SES
+- AWS EC2 with daily cronjob
+
+## Example Dataframe
+
+![Dataframe](./images/dataframe.png)
 
 ## Author
 Jonathan Nocek - *jnocek@iwu.edu*
