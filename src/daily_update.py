@@ -2,12 +2,10 @@
 import requests
 import pandas as pd
 import datetime
-import numpy
 import boto3
 import private
 import logging
 from yahoo_fin import stock_info as si
-from pandas_datareader import DataReader
 
 
 def weekly_update():
@@ -169,10 +167,10 @@ def weekly_update():
     # Send email w/ dataframe
     # -----------------------------------
     client = boto3.client(
-        'ses',
+        "ses",
         aws_access_key_id=private.AWS_ACCESS_KEY,
         aws_secret_access_key=private.AWS_SECRET_KEY,
-        region_name=private.AWS_REGION
+        region_name=private.AWS_REGION,
     )
 
     # Save files to csv
@@ -184,27 +182,17 @@ def weekly_update():
         logger.info("Sending email")
         response = client.send_email(
             Source=private.FROM_EMAIL,
-            Destination={
-                'ToAddresses': [private.TO_EMAIL],
-            },
+            Destination={"ToAddresses": [private.TO_EMAIL],},
             Message={
-                'Subject': {
-                    'Data': subject
-                    'Charset': 'UTF-8'
-                },
-                'Body': {
-                    'Html': {
-                        'Data': html_content,
-                        'Charset': 'UTF-8'
-                    }
-                }
+                "Subject": {"Data": subject, "Charset": "UTF-8"},
+                "Body": {"Html": {"Data": html_content, "Charset": "UTF-8"}},
             },
         )
-    except Exception as e:
-        error = e.response['Error']['Message']
-        logger.error(error)
+    except Exception as ex:
+        logger.error(str(ex), exc_info=ex)
     else:
         logger.info("Message sent")
+
 
 if __name__ == "__main__":
     weekly_update()
